@@ -48,4 +48,12 @@ public class Contato implements Serializable {
         return  "Nome: " + nome + "\n" +
                 "Data de aniversário: " + getDiaAniversario() + "/" + getMesAniversario();
     }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 }

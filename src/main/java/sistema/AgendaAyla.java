@@ -2,7 +2,9 @@ package sistema;
 
 import entidades.Contato;
 import exceptions.ContatoInexistenteException;
+import gravador.GravadorDeDados;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -11,8 +13,21 @@ import java.util.Map;
 public class AgendaAyla implements Agenda{
     private Map<String, Contato> contatos = new HashMap<>();
     public AgendaAyla(){}
-    public void salvarDados(){}
-    public void recuperarDados(){}
+    public void salvarDados(){
+        try{
+            GravadorDeDados.salvarContatos(contatos);
+        }catch(IOException e){
+            System.out.println(e.getMessage());
+        }
+
+    }
+    public void recuperarDados(){
+        try{
+            contatos = new HashMap<>(GravadorDeDados.recuperarContatos());
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
 
     @Override
     public boolean cadastraContato(String nome, int dia, int mes) {
