@@ -13,20 +13,18 @@ import java.util.Map;
 public class AgendaAyla implements Agenda{
     private Map<String, Contato> contatos = new HashMap<>();
     public AgendaAyla(){}
-    public void salvarDados(){
-        try{
+    public void salvarDados() throws IOException{ //dúvida sobre design de tratamento de exceções
             GravadorDeDados.salvarContatos(contatos);
-        }catch(IOException e){
-            System.out.println(e.getMessage());
-        }
-
     }
-    public void recuperarDados(){
-        try{
+    public void recuperarDados() throws IOException{
+        contatos = new HashMap<>(GravadorDeDados.recuperarContatos());
+
+        //Como eu estava fazendo:
+        /*try{
             contatos = new HashMap<>(GravadorDeDados.recuperarContatos());
         }catch(Exception e){
             System.out.println(e.getMessage());
-        }
+        }*/
     }
 
     @Override
@@ -56,5 +54,6 @@ public class AgendaAyla implements Agenda{
             }
         }
         return listaAniversariantes;
-    };
+    }
+
 }

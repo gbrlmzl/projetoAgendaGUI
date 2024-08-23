@@ -30,4 +30,8 @@ public class GravadorDeDados {
             throw new IOException("Classe dos objetos gravados no \"" + ARQUIVOS_CONTATOS + "\" não existe");
         }
     }
+    public static boolean existemDadosSalvos(){
+        File arquivos = new File(ARQUIVOS_CONTATOS);
+        return arquivos.exists();
+    }
 }
